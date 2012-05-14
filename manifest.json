@@ -1,0 +1,21 @@
+{
+   "background_page": "background.html",
+   "content_scripts": [ {
+      "js": [ "jquery.min.js", "contentscript.js" ],
+      "matches": [ "http://*/*", "https://*/*" ],
+      "run_at": "document_idle"
+   } ],
+   "description": "Project Harmony uses the Beacon bully model to identify bullying content, it also allows the submission of new bully content",
+   "icons": {
+      "48": "salience.png"
+   },
+   "name": "Project Harmony: Salience",
+   "options_page": "options.html",
+   "page_action": {
+      "default_icon": "salience.png",
+      "default_popup": "popup.html",
+      "default_title": "Project Harmony Salience"
+   },
+   "permissions": [ "tabs", "https://beaconinitiative.com/", "http://beaconinitiative.com/", "contextMenus" ],
+   "version": "1.0.1"
+}

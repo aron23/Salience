@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" 
+"https://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Project Harmony Options</title>
+<base target="_blank">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+<meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8"/>
+<meta http-equiv="content-style-type" content="text/css"/>
+<meta http-equiv="expires" content="0"/>
+<link rel="shortcut icon" href="https://beaconinitiative.com/static/img/favicon.ico" />
+<link href="popup.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="jscolor.js"></script>
+<script type="text/javascript" src="localize.js"></script>
+<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+
+
+<!--[if gte IE 9]>
+  <style type="text/css">
+    .menubar {
+       filter: none;
+    }
+  </style>
+<![endif]-->
+
+</head><body onload="restore_options()">
+<div class="orangebit" id="header" onClick="goHome()" style='min-width:600px;'>
+  <div id="beacontitle">Beacon Initiative</div>
+  <br>
+  <div id="beaconsubtitle">Tools and Insight to Empower Individuals & Stop Hate Crimes</div>
+  <div class="topfiller">
+    <div id="usermenu"><p>
+		</p><p></p>
+	</div>
+  </div>
+</div>
+<div class="greybit" id="pixelwide"></div>
+<div class="orangebit" id="pixelwide"></div>
+<div class="menubar" id="menu"><a href="https://beaconinitiative.com/project-harmony.htm" class="darkgreytext" id="menuitem">Project Harmony</a> 
+<a href="https://beaconinitiative.com/bully-for-you.htm" class="darkgreytext" id="menuitem">Bully for You</a></div>
+<div class="greybit" id="pixelwide"></div>
+<div class="whitebit" id="pixelwide"></div>
+<div class="greybit" id="pixelwide"></div>
+<div class="whitebit" id="mainbody">
+	<div id="altcontent">
+		<div class="whitebit" id="content"> <br>
+    <br>
+    <img src='https://beaconinitiative.com/static/img/bully-filter-logo.png'>
+    <h3>settings</h3>
+    <p>by turning sensors on or off you are setting permission for them to collect post content and comments for scoring against our bully model.</p>
+    <p>once active any content which scores similar to our bully corpus will turn red (or whatever the sensor color is set to)</p>
+    <p>a cool smilie also appears next to it which when you click resubmits it as incorrectly flagged</p>
+    <p>data collected this way is anonymized and stored for addition to the corpus</p>
+	<div id='status'></div>
+	API key:
+	<input id="api_key" onchange="save_options()"/> <em>to get an API key login <a href="https://beaconinitiative.com/user/accounts/login/">here</a></em>
+	<br/><br/>
+	Sensor Color:
+	<input id="sense_color" onchange="save_options()" class="color"/>
+	<br/><br/>
+	Sense Facebook:
+	<select id="sense_facebook" onChange="save_options()">
+	 <option value="on">on</option>
+	 <option value="off">off</option>
+	</select>
+	<br/><br/>
+	Sense Google+:
+	<select id="sense_google" onChange="save_options()">
+	 <option value="on">on</option>
+	 <option value="off">off</option>
+	</select>
+	<br/><br/>
+	Sense Twitter:
+	<select id="sense_twitter" onChange="save_options()">
+	 <option value="on">on</option>
+	 <option value="off">off</option>
+	</select>
+	<br/><br/>
+	Sense YouTube:
+	<select id="sense_youtube" onChange="save_options()">
+	 <option value="on">on</option>
+	 <option value="off">off</option>
+	</select>
+	<br/><br/>
+	<p>turning on submission of selected will cause any text selections on web pages in Chrome eligible for submission to our modeling system</p>
+	<p>clicking on the cool smilie submits content as not being bully material, the flame submits it as a bully statement</p>
+	Submission of selected text:
+	<select id="sense_selector" onChange="save_options()">
+	 <option value="on">on</option>
+	 <option value="off">off</option>
+	</select>
+	<br/>
+	<br/>
+
+	</div>
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" name="paypal">
+      <div style='display:none;'>
+        <input type='hidden' id='csrfmiddlewaretoken' name='csrfmiddlewaretoken' value='104fe9d206463e7406cae7d183d947a1' />
+      </div>
+      <input type="hidden" name="cmd" value="_donations">
+      <input type="hidden" name="business" value="donate@beaconinitiative.com">
+      <input type="hidden" name="lc" value="US">
+      <input type="hidden" name="item_name" value="Beacon Initiative">
+      <input type="hidden" name="no_note" value="0">
+      <input type="hidden" name="currency_code" value="USD">
+      <input type="hidden" name="bn" value="PP-DonationsBF:btn_donate_LG.gif:NonHostedGuest">
+      <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+	<div class="whitebit" id="sidebar">
+	</div>
+	</div>
+	<div class="whitebit" id="content">
+		<div class="whitebit" id="sidebar">
+		</div>
+	</div>
+</div>
+</div>
+<div class="whitebit" id="social" style="
+	font-family: Trebuchet, Helvetica, Sans-Serif;
+	font-size: 13px;
+	width:100%;
+	height: 30px;
+	float: left;
+	color: #ffffff;
+	text-align: center;
+	padding-top: 20px;">
+	<a href="https://plus.google.com/107644310483762000906?prsrc=3" rel="author" style="display:inline-block;text-decoration:none;color:#333;text-align:center;font:13px/16px arial,sans-serif;white-space:nowrap;"><span style="display:inline-block;font-weight:bold;vertical-align:top;margin-right:5px;margin-top:0px;">Circle</span><span style="display:inline-block;vertical-align:top;margin-right:13px;margin-top:0px;">on</span><img src="https://ssl.gstatic.com/images/icons/gplus-16.png" alt="" style="border:0;width:16px;height:16px;"/></a>
+	<a href="https://twitter.com/BeaconIn" class="twitter-follow-button" data-show-count="false">Follow @BeaconIn</a>
+</div>
+<div class="orangebit" id="footer"> Copyright &copy; 2012 Beacon Initiative <a href="https://beaconinitiative.com/privacy-policy.htm">privacy &amp; contact</a></div>
+</body>
+</html>

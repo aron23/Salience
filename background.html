@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <script>
+    
+function setLocal(id,power) {
+  localStorage[id] = power;
+}
+// Saves options to localStorage.
+function turn_on() {
+	setLocal("sense_facebook","on");
+	setLocal("sense_google","on");
+	setLocal("sense_twitter","on");
+	setLocal("sense_youtube","on");
+	setLocal("sense_selector","on");
+	setLocal("sense_color","FFA23A");
+}
+
+	if (!localStorage["sense_facebook"]) {
+		turn_on();
+	}
+	var version_num='0.1.55';
+	var default_key = '01V';
+	var versionurl = 'https://beaconinitiative.com/extensions/get/latest';
+	
+	
+	
+	$.ajax({
+	 type: "get",
+	 url: versionurl ,
+	 dataType: "text",
+	 data: {},
+	 timeout: 5000,
+	  success: function(request) {
+	   	if (request != version_num) {
+			chrome.tabs.create({'url': chrome.extension.getURL('options.html')}, function(tab) {
+				alert('A new version of Project Harmony is now available!');
+			  });
+		}
+	  } // End success
+	}); // End ajax method
+	
+	
+	if (localStorage["api_key"] == null) {
+			localStorage["api_key"]=default_key;
+	} 
+
+	
+
+
+      
+	var myurl = "";
+	
+	function transferUrl(callback,bullytype) {
+			chrome.tabs.getSelected(null, function(tab) {
+			myurl=tab.url;
+			});
+		callback(myurl+'BEACONINITIATIVEBREAK'+bullytype);
+	};
+	function transferSelectUrl(callback) {
+		chrome.tabs.getSelected(null, function(tab) {
+		callback(tab.url);
+		});
+	};
+	function submit(callback,bullytype) {
+		callback(bullytype);
+	
+	};
+
+
+
+//handle calls/callbacks fron contentscript
+      function onRequest(request, sender, callback) {
+      	if (request.id) {
+			if (request.id.indexOf("sense_") == 0) {
+				callback(localStorage[request.id]);	
+			} else if (request.id.indexOf("set_api_key") == 0) {
+				localStorage["api_key"]=request.api_key;	
+			} else if (request.id.indexOf("api_key") == 0) {
+				callback(localStorage["api_key"]);	
+			} else if (request.id.indexOf("launch_profile") == 0) {
+				chrome.tabs.create({'url': 'https://beaconinitiative.com/accounts/profile/'});
+				callback(localStorage["api_key"]);
+			}
+			
+		}
+        else if (request.action == 'transferUrl') {
+          transferUrl(callback,request.bullytype);
+        } 
+        else if (request.action == 'transferSelectUrl') {
+          transferSelectUrl(callback);
+        } 
+        else if (request.action == 'submitAPI') {
+          submit(callback,request.bullytype);
+        }
+        else if (request.action == 'postcontent') {
+          postcontent(request.text,callback);
+        } else if (request.action == 'flameon') {
+			chrome.tabs.getSelected(null, function(tab) {
+				flameOnTab(tab);
+			});
+        } else if (request.action == 'flameoff') {
+			chrome.tabs.getSelected(null, function(tab) {
+				flameOffTab(tab);
+			});
+        } else {
+        	sendResponse();
+        }
+      };
+
+		function clickHandler(e) {
+		    var someText = document.body.textContent;
+		    chrome.tabs.getSelected(null,sendTabReq); 
+		};
+		
+		function flameOnTab(tab) {
+			chrome.pageAction.setIcon({path:"flame-on.png", tabId:tab.id});
+			chrome.pageAction.show(tab.id);
+		};
+		function flameOffTab(tab) {
+			chrome.pageAction.setIcon({path:"flame-off.png", tabId:tab.id});
+			chrome.pageAction.show(tab.id);
+		};
+		function sendTabReq(tab) {
+			chrome.tabs.sendRequest(tab.id,{'action' : 'selection'});
+		};
+
+      
+	      chrome.extension.onRequest.addListener(onRequest);
+	
+
+
+    </script>
+  </body>
+</html>
+
